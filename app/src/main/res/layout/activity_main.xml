@@ -38,103 +38,27 @@
         app:layout_constraintStart_toEndOf="@+id/tv_cars"
         app:layout_constraintTop_toTopOf="@+id/tv_cars" />
 
-    <ImageView
-        android:id="@+id/iv_carImg"
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/eletric_car"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_title"
-        app:layout_constraintTop_toBottomOf="@+id/tv_cars" />
 
-    <TextView
-        android:id="@+id/tv_price"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/preco"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_carImg" />
 
-    <TextView
-        android:id="@+id/tv_price_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/preco_value"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@id/tv_price"
-        app:layout_constraintTop_toBottomOf="@+id/iv_carImg" />
-
-    <TextView
-        android:id="@+id/tv_battery"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Bateria"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_price" />
-
-    <TextView
-        android:id="@+id/tv_battery_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="95kwh"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/tv_battery"
-        app:layout_constraintTop_toTopOf="@+id/tv_battery" />
-
-    <TextView
-        android:id="@+id/tv_power"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Potencia"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_battery" />
-
-    <TextView
-        android:id="@+id/tv_power_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="500cv"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/tv_power"
-        app:layout_constraintTop_toTopOf="@+id/tv_power" />
-
-    <TextView
-        android:id="@+id/tv_charger"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Recarga"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_power" />
-
-    <TextView
-        android:id="@+id/tv_charger_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="23 min"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/tv_charger"
-        app:layout_constraintTop_toTopOf="@+id/tv_charger" />
 
     <Button
         android:id="@+id/btn_Redirect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Calcular"
         android:layout_margin="16dp"
+        android:text="Calcular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_list_cars"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/btn_Redirect"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_cars"
+        tools:listitem="@layout/car_item"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
