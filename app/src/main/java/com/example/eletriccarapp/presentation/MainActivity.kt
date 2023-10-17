@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eletriccarapp.R
+import com.example.eletriccarapp.data.CarFactory
 import com.example.eletriccarapp.presentation.adapter.CarAdapter
 
 class MainActivity : AppCompatActivity() {
@@ -33,10 +34,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setupList() {
-        var data = arrayOf(
-            "Cupcake", "Donut", "Froyo", "Gingerbread"
-        )
-        val adapter = CarAdapter(data)
+        val adapter = CarAdapter(CarFactory.list)
         carList.adapter = adapter
     }
 
