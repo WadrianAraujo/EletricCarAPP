@@ -39,8 +39,6 @@
         app:layout_constraintTop_toTopOf="@+id/tv_cars" />
 
 
-
-
     <Button
         android:id="@+id/btn_Redirect"
         android:layout_width="wrap_content"
@@ -56,9 +54,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/btn_Redirect"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_cars"
-        tools:listitem="@layout/car_item"/>
+        tools:listitem="@layout/car_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

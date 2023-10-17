@@ -7,24 +7,28 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eletriccarapp.R
 
-class CarAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CarAdapter(private val cars: Array<String>) :
+    RecyclerView.Adapter<CarAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    // Cria uma nova view
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.car_item, parent, false)
         return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int = 0
+    // Retorna a quantidade de itens na lista
+    override fun getItemCount(): Int = cars.size
 
+    // Pega o conteudo da view e troca pela informacao de item de uma lista
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.text.text = "teste"
+        holder.text.text = cars[position]
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val text: TextView
-
+ 
         init {
-            text = view.findViewById(R.id.tv_result)
+            text = view.findViewById(R.id.tv_price)
         }
 
     }
