@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eletriccarapp.R
@@ -27,6 +28,7 @@ import java.net.URL
 class CarFragment : Fragment() {
     private lateinit var btnRedirect: FloatingActionButton
     private lateinit var carList: RecyclerView
+    private lateinit var progressBar: ProgressBar
 
     var carsArray: ArrayList<Car> = ArrayList()
 
@@ -40,18 +42,21 @@ class CarFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        callService()
+
         setupView(view)
+        callService()
         setupListeners()
     }
 
     fun setupView(view: View) {
         btnRedirect = view.findViewById(R.id.fab_calculate)
         carList = view.findViewById(R.id.rv_list_cars)
+        progressBar = view.findViewById(R.id.pb_loader)
 
     }
 
     fun setupList() {
+        carList.visibility = View.VISIBLE
         val adapter = CarAdapter(carsArray)
         carList.adapter = adapter
     }
@@ -71,6 +76,7 @@ class CarFragment : Fragment() {
 
         override fun onPreExecute() {
             super.onPreExecute()
+            progressBar.visibility = View.VISIBLE
         }
 
         override fun doInBackground(vararg url: String?): String {
@@ -82,9 +88,21 @@ class CarFragment : Fragment() {
                 urlConnection = urlBase.openConnection() as HttpURLConnection
                 urlConnection.connectTimeout = 60000
                 urlConnection.readTimeout = 60000
+                urlConnection.setRequestProperty(
+                    "Accept",
+                    "application/json"
+                )
 
-                var response = urlConnection.inputStream.bufferedReader().use { it.readText() }
-                publishProgress(response)
+                val responseCode = urlConnection.responseCode
+
+                if (responseCode == HttpURLConnection.HTTP_OK){
+                    var response = urlConnection.inputStream.bufferedReader().use { it.readText() }
+                    publishProgress(response)
+                }else{
+                    Log.e("Erro","Serviço indisponivel no momento")
+                }
+
+
             } catch (ex: Exception) {
                 Log.e("Erro", "Erro ao realizar processamento")
             } finally {
@@ -129,6 +147,7 @@ class CarFragment : Fragment() {
                     carsArray.add(model)
 
                 }
+                progressBar.visibility = View.GONE
                 setupList()
             } catch (ex: Exception) {
                 Log.e("Erro ->", ex.message.toString())
