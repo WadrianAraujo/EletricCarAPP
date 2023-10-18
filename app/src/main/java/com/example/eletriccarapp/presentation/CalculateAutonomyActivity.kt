@@ -1,5 +1,6 @@
 package com.example.eletriccarapp.presentation
 
+import android.os.AsyncTask
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -7,13 +8,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.eletriccarapp.R
+import java.net.HttpURLConnection
+import java.net.URL
 
-class CalculateAutonomyActivity : AppCompatActivity(){
-    private lateinit var result : TextView
-    private lateinit var price : EditText
-    private lateinit var kmTraveled : EditText
-    private lateinit var btnCalculate : Button
-    private lateinit var btnClose : ImageView
+class CalculateAutonomyActivity : AppCompatActivity() {
+    private lateinit var result: TextView
+    private lateinit var price: EditText
+    private lateinit var kmTraveled: EditText
+    private lateinit var btnCalculate: Button
+    private lateinit var btnClose: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +27,7 @@ class CalculateAutonomyActivity : AppCompatActivity(){
 
     }
 
-    fun setupViews(){
+    fun setupViews() {
         kmTraveled = findViewById(R.id.et_km)
         price = findViewById(R.id.et_price)
         result = findViewById(R.id.tv_result)
@@ -32,7 +35,7 @@ class CalculateAutonomyActivity : AppCompatActivity(){
         btnClose = findViewById(R.id.iv_close_img)
     }
 
-    fun setupListeners(){
+    fun setupListeners() {
         btnCalculate.setOnClickListener {
             Calculate()
         }
@@ -41,10 +44,13 @@ class CalculateAutonomyActivity : AppCompatActivity(){
         }
     }
 
-    fun Calculate(){
+    fun Calculate() {
         val textPrice = price.text.toString().toFloat()
         val textTraveled = kmTraveled.text.toString().toFloat()
         val result0 = textPrice / textTraveled
         result.text = result0.toString()
     }
+
+
+
 }
