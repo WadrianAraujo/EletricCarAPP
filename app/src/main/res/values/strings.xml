@@ -5,4 +5,5 @@
     <string name="favoritos">Favoritos</string>
     <string name="preco">Preço</string>
     <string name="preco_value">R$ 300.000</string>
+    <string name="response_error">Algo deu errado</string>
 </resources>

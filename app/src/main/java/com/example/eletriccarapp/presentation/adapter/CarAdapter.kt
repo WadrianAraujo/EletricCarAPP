@@ -22,10 +22,10 @@ class CarAdapter(private val cars: List<Car>) :
 
     // Pega o conteudo da view e troca pela informacao de item de uma lista
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.price.text = cars[position].price
-        holder.battery.text = cars[position].battery
-        holder.power.text = cars[position].power
-        holder.charger.text = cars[position].charger
+        holder.price.text = cars[position].preco
+        holder.battery.text = cars[position].bateria
+        holder.power.text = cars[position].potencia
+        holder.charger.text = cars[position].recarga
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
