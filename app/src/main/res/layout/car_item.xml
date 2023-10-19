@@ -22,6 +22,18 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/iv_favorites"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_margin="16dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_start"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
                 android:id="@+id/iv_carImg"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"

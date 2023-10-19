@@ -1,6 +1,6 @@
 package com.example.eletriccarapp.presentation
 
-import android.os.AsyncTask
+import android.content.Context
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -8,8 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.eletriccarapp.R
-import java.net.HttpURLConnection
-import java.net.URL
 
 class CalculateAutonomyActivity : AppCompatActivity() {
     private lateinit var result: TextView
@@ -25,6 +23,12 @@ class CalculateAutonomyActivity : AppCompatActivity() {
         setupViews()
         setupListeners()
 
+        setupCachedResult()
+    }
+
+    fun setupCachedResult(){
+        val valueCalculate = getSharedPref()
+        result.text = valueCalculate.toString()
     }
 
     fun setupViews() {
@@ -49,8 +53,20 @@ class CalculateAutonomyActivity : AppCompatActivity() {
         val textTraveled = kmTraveled.text.toString().toFloat()
         val result0 = textPrice / textTraveled
         result.text = result0.toString()
+        saveSharedPref(result0)
     }
 
+    fun saveSharedPref(result : Float){
+        val sharedPref = getPreferences(Context.MODE_PRIVATE)?: return
+        with(sharedPref.edit()){
+            putFloat(getString(R.string.saved_calc),result)
+            apply()
+        }
+    }
 
+    fun getSharedPref(): Float {
+        val sharedPref = getPreferences(Context.MODE_PRIVATE)
+        return sharedPref.getFloat(getString(R.string.saved_calc), 0.0f)
+    }
 
 }
